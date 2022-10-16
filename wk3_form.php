@@ -7,6 +7,7 @@
     $gender = "";
     $dob = "";
     $country = "";
+    $message="";
     
   //  if ($_SERVER["REQUEST_METHOD"] == "POST") {
    //   $nam1 = test_input($_POST["Lastst Name"]);
@@ -22,18 +23,13 @@ function t($string)
 {$string = trim($string);
 $string = stripslashes($string);
 return $string;
-
-
-
-
 }
 
    if (isset ($_POST["submit"]))
-    {
+    
         if(empty($_POST["submit"]))
         {
             $error  = '<p><label class="text-danger"> Please Enter your Name</label></p>';
-            
         }
 
         else
@@ -63,6 +59,7 @@ return $string;
 
                     }
                 }
+    
 if(empty($_POST["subject"]))
 {
     $error = '<p><label class="text-danger"> Subject is required</label></p>';
@@ -82,7 +79,7 @@ else
 }
  if($error == '')    
  
- {
+ 
 
     $file_open = fopen("contact_data.csv", "a");
     $no_rows = count(file("contact_data.csv"));
@@ -104,20 +101,9 @@ else
     $email= '';
     $subject = '';
     $message = '';
-    echo $error;
     
- }
 
-
-    function test_input($data) {
-      $data = trim($data);
-      $data = stripslashes($data);
-      $data = htmlspecialchars($data);
-      return $data;
-    }
-    ?>
-
-    <?php
+   
 echo "<h2>Your Input:</h2>";
 echo $name1;
 echo $name2;
