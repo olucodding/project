@@ -1,111 +1,41 @@
 <?php
-    // define variables and set to empty values
-    $error="";
-    $name1 ="";
-    $name2 = "";
-    $email = "";
-    $gender = "";
-    $dob = "";
-    $country = "";
-    $message="";
-    
-  //  if ($_SERVER["REQUEST_METHOD"] == "POST") {
-   //   $nam1 = test_input($_POST["Lastst Name"]);
-   //   $name2 = test_input($_POST["name"]);
-   //   $email = test_input($_POST["Email Address"]);
-  //    $gender = test_input($_POST["gender"]);
-  //    $dob = test_input($_POST["comment"]);
-   //   $country = test_input($_POST["country"]);
-   // }
-    
-function t($string)
+if(isset($_POST['Submit'])){
+// Getting variables from the form
 
-{$string = trim($string);
-$string = stripslashes($string);
-return $string;
-}
 
-   if (isset ($_POST["submit"]))
-    
-        if(empty($_POST["submit"]))
-        {
-            $error  = '<p><label class="text-danger"> Please Enter your Name</label></p>';
-        }
+$name1 = $_POST['Firstname'];
+$name2 = $_POST['Lastname'];
+$email = $_POST['Emailaddress'];
+$message = $_POST['Message'];
+$dob = $_POST['DOB'];
+$gender = $_POST['Gender'];
+$country = $_POST['Country'];
 
-        else
-        {
-
-        $name = clean_text($_POST["name"]);
-        if (!preg_match("/^[a-za-Z]*$/",$same))
-          {
-            $error  = '<p><label class="text-danger"> only letters and white spaces allowed</label></p>';
-
-                }
-
-            }
-            if(empty($_POST[email]))
-            {
-        
-                $error  = '<p><label class="text-danger"> Please enter your email</label></p>';
-
-            }
-            else
-            {   
-            
-        $email = clean_text($_POST["email"]);
-        if(!filter_ver ($email, filter_Validate_email))
-            {
-                 $error  = '<p><label class="text-danger"> invalid email format</label></p>';
-
-                    }
-                }
-    
-if(empty($_POST["subject"]))
+if($name1 !='' && $name2 !='' && $email !='' && $message !='' && $dob!='' && $gender !='' && $country !='')
 {
-    $error = '<p><label class="text-danger"> Subject is required</label></p>';
-}
-    else
-{
-    $subject = clean_text($_POST["subject"]);
-}
-if(empty($_POST["message"]))
-{
-$error = '<p><label class="text-danger"> message is required</label></p>';
+//  To redirect form to thank you page
+//header("Location:/PHP_PROJECTS/thank_you.html");
+$filename = "./user_data.csv";
+$handle = fopen($filename, "a");
+fwrite($handle, $name1);
+fwrite($handle, $name2); 
+fwrite($handle, $email);
+fwrite($handle, $gender);
+fwrite($handle, $dob);
+fwrite($handle, $country);
+fwrite($handle, $message);
 
+
+
+fclose($handle);
 }
-else
-{
-    $message = clean_text($_POST["message"]);
+else{
+?><span><?php echo "Please all feilds are required";?></span> <?php
 }
- if($error == '')    
- 
- 
-
-    $file_open = fopen("contact_data.csv", "a");
-    $no_rows = count(file("contact_data.csv"));
-    if($no_rows > 1)
-    {
-        $no_rows = ($no_rows - 1) + 1;
-    }
-    $form_data = array(
-        'sr_no' => $no_rows,
-        'name' => $name,
-        'email' => $email,
-        'subject' => $subject,
-        'message' => $message
-
-    );
-    fputcsv($file_open, $form_data);
-    $error = '<label class="text-sucess">Thank you for contacting us</label>';
-    $name = '';
-    $email= '';
-    $subject = '';
-    $message = '';
-    
-
    
-echo "<h2>Your Input:</h2>";
+echo "<h2>Thank you for contacting us <br> Your Input is:</h2>";
 echo $name1;
+echo "<br>";
 echo $name2;
 echo "<br>";
 echo $email;
@@ -115,5 +45,27 @@ echo "<br>";
 echo $dob;
 echo "<br>";
 echo $country;
-?>
+echo "<br>";
+echo $message;
 
+// $no_rows = count($handle);
+      //  if($no_rows > 1)
+      //  {
+      //      $no_rows = ($no_rows - 1) + 1;
+      //  }
+       // $form_data = array (
+            //'sr_no'     => $no_rows,
+         //   'name1'     => $name1,
+           /// 'name2'     => $name2,
+           /// 'email'     => $email,
+           // 'message'   => $message,
+           // 'dob'       => $dob,
+           // 'gender'    => $gender,
+           // 'country'   => $country,
+      //  );
+        //fputcsv($filename. $form_data);
+        //fwrite($handle, $form_data);
+}
+
+
+?>
