@@ -1,5 +1,6 @@
 </php ?>
 
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -88,19 +89,20 @@
         <div class="container2">
             <div class="row">
                 <div class="col-md-6 padding_right0">
-                    <form id="request" class="main_form2" action="wk3_form.php" method="POST">
+                    <form id="request" class="main_form2" action="user_data.php" method="POST">
                         <div class="row">
                             <div class="col-md-12 ">
-                                <input class="contactus" placeholder="First Name" type="type" name="First Name">
+                                <input class="contactus" placeholder="First Name" type="text" name="Firstname" required>
                             </div>
                             <div class="col-md-12 ">
-                                <input class="contactus" placeholder="Last Name" type="type" name="Lastst Name">
+                                <input class="contactus" placeholder="Last Name" type="text" name="Lastname" required>
                             </div>
                             <div class="col-md-12">
-                                <input class="contactus" placeholder="Email Address" type="type" name="Email Address">
+                                <input class="contactus" placeholder="Email Address" type="email" name="Emailaddress"
+                                    required>
                             </div>
                             <div class="col-md-12">
-                                <select class="contactus" placeholder="Gender" name="type" type="Gender">
+                                <select class="contactus" placeholder="Gender" type="text" name="Gender">
                                     <option value="Male">Male</option>
                                     <option value="Female">Female</option>
                                     <option value="LGBT">LGBT</option>
@@ -110,13 +112,14 @@
                             <div class="col-md-12">
 
 
-                                <input type="date" placeholder="D.O.B" class="contactus" name="DOB">
+                                <input type="date" placeholder="D.O.B" class="contactus" type="date" name="DOB"
+                                    required>
 
 
                             </div>
 
                             <div class="col-md-12">
-                                <select name="Country" placeholder="Country" class="contactus">
+                                <select name="Country" placeholder="Country" class="contactus" tyepe="text" required>
                                     <option value="Country">Select Your Country</option>
                                     <option value="United Kingdom">United Kingdom</option>
                                     <option value="USA">USA</option>
@@ -132,11 +135,11 @@
                                 </select>
                             </div>
                             <div class="col-md-12">
-                                <textarea class="textarea" placeholder="Message" type="type"
-                                    Message="Name">Message</textarea>
+                                <textarea class="textarea" placeholder="Message" type="text" name="Message"
+                                    required>Message</textarea>
                             </div>
                             <div class="col-md-12">
-                                <button class="send_btn">Submit</button>
+                                <button type="submit" name="Submit">submit</button>
                             </div>
                         </div>
                     </form>
@@ -158,9 +161,8 @@
                     <div class=" col-lg-3 col-md-6">
 
                         <p class="many">
-                            There are many variations of passages of Lorem Ipsum available, but the majority have
-                            suffered
-                            alteration in some form, by injected humou
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus quis atque totam quisquam
+                            unde ipsa?
                         </p>
                     </div>
                     <div class="col-lg-2 offset-lg-1 col-md-6">
