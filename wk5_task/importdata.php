@@ -1,38 +1,24 @@
 <?php
 
 include 'config.php';
-// Name of the data file
+$query = '';
+$filename = file('D:\xampp\htdocs\PHP_PROJECTS\wk5\userAuthMySQL\users.sql'); // pls change to your file path else code won't work.
+foreach ($filename as $row) {
 
-$filename = 'users.sql';
-$handle = fopen($filename, "r");
-$contents = fread($handle, filesize($filename));
+    //loop through file row
+    $row_start = substr(trim($row), 0, 2);
+    $row_end = substr(trim($row), -1, 1);
 
-$tempRow = '';
-
-// Reading the data file
-$rows = file($handle);
-
-
-// Loop through each row
-foreach ($rows as $row) {
-    // Skip it if it's a comment
-    if (substr($row, 0, 2) == '--' || $row == '')
+    if (empty($row) || $row_start == '--' || $row_start == '/*' || $row_start == '//') {
         continue;
-
-    // Add this row to the current segment
-    $tempRow .= $row;
-
-    // check the end of one query
-    if (substr(trim($row), -1, 1) == ';') {
-        // Perform the query
-        mysqli_query($conn, $tempRow);
-
-        // Reset temp variable to empty
-        $tempRow = '';
-
     }
-    echo $contents;
-    fclose($handle);
+    //query for file data
+    $query = $query . $row;
+    if ($row_end == ';') {
+        mysqli_query($conn, $query) or die('<div class="sql-import-error"> query error <b>' . $query . '</b></div>');
+        $query = '';
+    }
 }
-echo "Tables imported successfully";
+echo "\n Data imported successfully into Students table";
+
 ?>
